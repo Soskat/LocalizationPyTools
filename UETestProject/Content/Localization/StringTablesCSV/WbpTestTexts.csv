@@ -1,0 +1,6 @@
+"Key","SourceString","Comment"
+"test_wbp_title","Localization test","Title of the test map widget"
+"test_wbp_info","Use following buttons to switch current culture and language used in game. The list of animals names should be reloaded with their localized versions that matches selected language.","Information about test map"
+"test_wbp_running_note","NOTE: You should test this example only in Standalone mode. Otherwise switching current culture won't work!","Note about running the test map"
+"test_wbp_current_culture","Current culture:","Refers to the currently used localized culture"
+"test_wbp_animals_list_title","List of animals:","Title of the list of animals"
