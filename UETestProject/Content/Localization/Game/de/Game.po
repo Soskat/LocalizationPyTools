@@ -1,0 +1,103 @@
+﻿# Game German translation.
+# Copyright Epic Games, Inc. All Rights Reserved.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2022-08-05 20:34\n"
+"PO-Revision-Date: 2022-08-05 20:34\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Key:	animal_cat
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_cat"
+msgid "cat"
+msgstr ""
+
+#. Key:	animal_cow
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_cow"
+msgid "cow"
+msgstr ""
+
+#. Key:	animal_dog
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_dog"
+msgid "dog"
+msgstr ""
+
+#. Key:	animal_goat
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_goat"
+msgid "goat"
+msgstr ""
+
+#. Key:	animal_hen
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_hen"
+msgid "hen"
+msgstr ""
+
+#. Key:	animal_horse
+#. SourceLocation:	Localization/StringTablesCSV/Animals.csv
+#. InfoMetaData:	"Comment" : "Animal name"
+#: Localization/StringTablesCSV/Animals.csv
+msgctxt "UETestProject,animal_horse"
+msgid "horse"
+msgstr ""
+
+#. Key:	test_wbp_animals_list_title
+#. SourceLocation:	Localization/StringTablesCSV/WbpTestTexts.csv
+#. InfoMetaData:	"Comment" : "Title of the list of animals"
+#: Localization/StringTablesCSV/WbpTestTexts.csv
+msgctxt "UETestProject,test_wbp_animals_list_title"
+msgid "List of animals:"
+msgstr "Liste der Tiere:"
+
+#. Key:	test_wbp_current_culture
+#. SourceLocation:	Localization/StringTablesCSV/WbpTestTexts.csv
+#. InfoMetaData:	"Comment" : "Refers to the currently used localized culture"
+#: Localization/StringTablesCSV/WbpTestTexts.csv
+msgctxt "UETestProject,test_wbp_current_culture"
+msgid "Current culture:"
+msgstr "Aktuelle Kultur:"
+
+#. Key:	test_wbp_info
+#. SourceLocation:	Localization/StringTablesCSV/WbpTestTexts.csv
+#. InfoMetaData:	"Comment" : "Information about test map"
+#: Localization/StringTablesCSV/WbpTestTexts.csv
+msgctxt "UETestProject,test_wbp_info"
+msgid "Use following buttons to switch current culture and language used in game. The list of animals names should be reloaded with their localized versions that matches selected language."
+msgstr "Verwenden Sie die folgenden Schaltflächen, um die aktuelle Kultur und die im Spiel verwendete Sprache zu wechseln. Die Liste der Tiernamen sollte mit ihren lokalisierten Versionen neu geladen werden, die der ausgewählten Sprache entsprechen."
+
+#. Key:	test_wbp_running_note
+#. SourceLocation:	Localization/StringTablesCSV/WbpTestTexts.csv
+#. InfoMetaData:	"Comment" : "Note about running the test map"
+#: Localization/StringTablesCSV/WbpTestTexts.csv
+msgctxt "UETestProject,test_wbp_running_note"
+msgid "NOTE: You should test this example only in Standalone mode. Otherwise switching current culture won't work!"
+msgstr "HINWEIS: Sie sollten dieses Beispiel nur im Standalone-Modus testen. Andernfalls wird das Umschalten der aktuellen Kultur nicht funktionieren!"
+
+#. Key:	test_wbp_title
+#. SourceLocation:	Localization/StringTablesCSV/WbpTestTexts.csv
+#. InfoMetaData:	"Comment" : "Title of the test map widget"
+#: Localization/StringTablesCSV/WbpTestTexts.csv
+msgctxt "UETestProject,test_wbp_title"
+msgid "Localization test"
+msgstr "Lokalisierungstest"
+
