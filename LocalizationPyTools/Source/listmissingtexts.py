@@ -1,7 +1,7 @@
 # author: Katarzyna 'K8' Sosnowska
 # e-mail: sosnowska.kk@gmail.com
 # 
-# date of last update: 2022-08-05
+# date of last update: 2022-08-06
 # 
 # # About: 
 # This file contains methods for generating a list of texts with missing translations.
@@ -25,8 +25,8 @@
 # .
 
 import os
-from datetime import datetime
 from configtools import LocToolsConfig
+from datetime import datetime
 from openpyxl import Workbook
 from xlsxanalyser import analyse_xlsx_translations
 
@@ -48,7 +48,7 @@ def create_new_workbook(sheet_name, column_headers_map):
 Generates a list of texts that can't be found in provided XLSX files with translations.
 All texts that will be on that list are missing translations.
 '''
-def generate_list_of_missing_translations_internal(csv_source_dir, xlsx_translations_dir, xlsx_output_dir, separator):
+def list_missing_texts(csv_source_dir, xlsx_translations_dir, xlsx_output_dir, separator):
     if not os.path.exists(csv_source_dir):
         print("[listmissingtexts] ERROR: {0} directory doesn't exist!".format(csv_source_dir))
         return
@@ -105,20 +105,11 @@ def generate_list_of_missing_translations_internal(csv_source_dir, xlsx_translat
     print("\nSUMMARY: {0} total texts checked | {1} total missing texts\n".format(debug_total_text_count, debug_total_missing_text_count))
     pass
 
-
-'''
-Invokes generation of a list of texts with missing translations.
-'''
-def generate_list_of_missing_translations(params):
-    generate_list_of_missing_translations_internal(params[0], params[1], params[2], params[3])
-    pass
-
 #===============================================================================================
-PROMPT_MARK = '>'
 
 if __name__== "__main__":
     config_data = LocToolsConfig()
     config_data.load_config_data()
     xlsxan_settings = config_data.get_xlsxan_settings()
     ltm_settings = config_data.get_lmt_settings()
-    generate_list_of_missing_translations_internal(ltm_settings[0], xlsxan_settings[0], ltm_settings[1], ltm_settings[2])
+    list_missing_texts(ltm_settings[0], xlsxan_settings[0], ltm_settings[1], ltm_settings[2])

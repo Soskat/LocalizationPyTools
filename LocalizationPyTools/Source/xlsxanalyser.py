@@ -1,7 +1,7 @@
 # author: Katarzyna 'K8' Sosnowska
 # e-mail: sosnowska.kk@gmail.com
 # 
-# date of last update: 2022-08-05
+# date of last update: 2022-08-06
 # 
 # # About: 
 # This file contains methods for analysing translations listed in XLSX files iside specified directory.
@@ -74,11 +74,10 @@ def analyse_xlsx_translations(_input_dir_path, _max_column_number, _debug_on):
                 translations_dic[text_id][culture_code] = cell.value
             debug_analysed_texts_num += 1
             pass
-    if _debug_on: print("[xlsx_analyser] : analysed {0} texts".format(debug_analysed_texts_num))
+    if _debug_on: print("[xlsxanalyser] : analysed {0} texts (in total)".format(debug_analysed_texts_num))
     return column_headers_map, translations_dic
 
 #===============================================================================================
-PROMPT_MARK = '>'
 
 if __name__== "__main__":
     config_data = LocToolsConfig()

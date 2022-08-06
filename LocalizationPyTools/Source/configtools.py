@@ -19,10 +19,11 @@ LMT_SOURCE_CSV_DIR = "lmt_source_csv_dir"
 LMT_XLSX_OUTPUT_DIR = "lmt_xlsx_output_dir"
 LMT_SEPARATOR = "lmt_separator"
 POU_PO_SOURCE_DIR = "pou_po_source_dir"
+POU_ID_SEPARATOR = "pou_id_separator"
 
 DEFAULT_ID_PREFIX = ','
 STR_NONE = "none"
-CONFIG_FILE_NAME = "config"
+CONFIG_FILE_NAME = ".config"
 
 '''
 This class encapsulates all settings used in Loc Tools UE program.
@@ -37,6 +38,7 @@ class LocToolsConfig:
     lmt_separator = STR_NONE
     # pou (po-updater) settings:
     pou_po_source_dir = STR_NONE
+    pou_id_separator = DEFAULT_ID_PREFIX
 
     '''
     Writes down current state of all variables into a file with given path <config_file_path>.
@@ -63,6 +65,8 @@ class LocToolsConfig:
             config_file.write("\n## POU (po-updater) tool settings:\n")
             config_file.write("# {0} - a path to a directory with PO files, that whill be updated during POU tool job.\n".format(POU_PO_SOURCE_DIR))
             config_file.write("{0}=none\n".format(POU_PO_SOURCE_DIR))
+            config_file.write("# {0} - a single character or a phrase used for combining texts namespace with text key (eg. `Animals,animal_cat`).\n".format(POU_ID_SEPARATOR))
+            config_file.write("{0}=none\n".format(POU_ID_SEPARATOR))
         pass
 
     '''
@@ -92,6 +96,8 @@ class LocToolsConfig:
                 # parsing po_updater variables:
                 elif words[0] == POU_PO_SOURCE_DIR:
                     self.pou_po_source_dir = words[1].rstrip('\r\n')
+                elif words[0] == POU_ID_SEPARATOR:
+                    self.pou_id_separator = words[1].rstrip('\r\n')
         pass
 
     '''
@@ -110,10 +116,10 @@ class LocToolsConfig:
     
     '''
     This methods returns a tuple with all settings needed for 'pou' tool.
-    returns: (pou_po_source_dir)
+    returns: (pou_po_source_dir, pou_id_separator)
     '''
-    def get_po_updater_settings(self):
-        return self.pou_po_source_dir
+    def get_pou_settings(self):
+        return self.pou_po_source_dir, self.pou_id_separator
 
 '''
 Generates new config file if can't find any in specified './config' location.
@@ -122,6 +128,14 @@ def generate_new_config():
     config_data = LocToolsConfig()
     config_data.write_config_to_file()
     print("[configtools] generated config file.")
+    pass
+
+'''
+Generates new config file if can't find any in specified './config' location.
+'''
+def generate_config_if_needed():
+    if not os.path.exists('./{0}'.format(CONFIG_FILE_NAME)):
+        generate_new_config()
     pass
 
 #===============================================================================================
