@@ -3,9 +3,11 @@ DerivedDataCache
 Intermediate
 Saved
 __pycache__
+build
 .config
 .vscode
 .vs
+*.spec
 *.VC.db
 *.opensdf
 *.opendb
