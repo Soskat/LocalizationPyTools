@@ -16,7 +16,7 @@
 # # How LMT program works?
 # 
 # First, it analyses all XLSX files with translations and register all translations in a dedicated dictionary.
-# For this stem, the xlsxanalyser tool is used.
+# For this step, the xlsxanalyser tool is used.
 # 
 # After that, the program goes through all input CSV files (those files are used to create string tables used in UE project) 
 # and read their content. Each text ID from CSV file that is not in generated translations dictionary is written down 

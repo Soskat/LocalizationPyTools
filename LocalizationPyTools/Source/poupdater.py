@@ -16,7 +16,7 @@
 # # How POU program works?
 # 
 # First, it analyses all XLSX files with translations and register all translations in a dedicated dictionary.
-# For this stem, the xlsxanalyser tool is used.
+# For this step, the xlsxanalyser tool is used.
 # 
 # After that, it goes through all input PO files (those are set of texts for all cultures used in UE project) 
 # found inside subdirectories of input directory and read their content. For each text ID (msgctxt) that has 
