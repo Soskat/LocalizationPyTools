@@ -12,7 +12,7 @@
 # XLSX Analyser:
 #  > command: xlsxan
 #  > description: Reads all XLSX files found in input directory and generates
-#                 a disctionary with all translations for each found native text.
+#                 a dictionary with all translations for each found native text.
 #                 All input arguments are read from config file (`xlsxan` prefix).
 # 
 # List Missing Texts:
@@ -37,7 +37,6 @@ from listmissingtexts import list_missing_texts
 from poupdater import po_updater
 
 # program commands and arguments:
-PROMPT_MARK = "> "
 HELP_SHORT = "-h"
 HELP_FULL = "help"
 QUIT_OPTION = "quit"
@@ -107,7 +106,7 @@ if __name__== "__main__":
     generate_config_if_needed()
     print(WELCOME_MESSAGE)
     while True:
-        args = input(PROMPT_MARK).split(' ')
+        args = input('> ').split(' ')
         if len(args) == 0:
             continue
         selectedTool = args[0]
