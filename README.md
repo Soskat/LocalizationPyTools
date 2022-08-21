@@ -78,20 +78,6 @@ After that, the program goes through all input CSV files (those files are used t
 1. Run `lmt` command in __locpytools__ program.
 1. New `MissingTexts_XYZ.xlsx` file should be generated inside the path provided for `lmt_xlsx_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
 
-## The `lct` command
-
-It runs the `listchangedtexts` tool, which generates a new XLSX file with all source texts, that have been changed and may have outdated translations. Generally, this program helps to find all source texts, whose new meaning is completely different from the previous version, which invalidate their existing translations.
-
-This simple program analyses data from the input PO file with native culture. It compares the content of the `msgstr` and the `msgid` parts of the localized text data. If `msgstr` text is different than the text assigned to `msgid`, it means that the source text in `msgid` has changed, and the existing translation stored in `msgstr` property may be outdated.
-
-### Usage
-
-1. Open your project in Unreal editor, go to the `Localization Dashboard` window and use *Gather texts* option to update localized texts archives in your project.
-1. Run __locpytools__ program. Make sure that the `.config` file exists - if not, you can generate one using the `mkconfig` command.
-1. Make sure the `.config` file has proper data for arguments with `lct` prefix.
-1. Run `lct` command in __locpytools__ program.
-1. New `ChangedTexts_XYZ.xlsx` file should be generated inside the path provided for `lct_xlsx_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
-
 ### IMPORTANT NOTE ABOUT `lmt` TOOL
 
 The lmt tool demands CSV files to be formatted with serveral rules, which are the following:
@@ -126,6 +112,20 @@ And now how __GOOD__ formatting looks like:
 
 "animal_cat_multiline","This\r\nis\r\nTHE CAT",The multi-line cat"
 ```
+
+## The `lct` command
+
+It runs the `listchangedtexts` tool, which generates a new XLSX file with all source texts, that have been changed and may have outdated translations. Generally, this program helps to find all source texts, whose new meaning is completely different from the previous version, which invalidate their existing translations.
+
+This simple program analyses data from the input PO file with native culture. It compares the content of the `msgstr` and the `msgid` parts of the localized text data. If `msgstr` text is different than the text assigned to `msgid`, it means that the source text in `msgid` has changed, and the existing translation stored in `msgstr` property may be outdated.
+
+### Usage
+
+1. Open your project in Unreal editor, go to the `Localization Dashboard` window and use *Gather texts* option to update localized texts archives in your project.
+1. Run __locpytools__ program. Make sure that the `.config` file exists - if not, you can generate one using the `mkconfig` command.
+1. Make sure the `.config` file has proper data for arguments with `lct` prefix.
+1. Run `lct` command in __locpytools__ program.
+1. New `ChangedTexts_XYZ.xlsx` file should be generated inside the path provided for `lct_xlsx_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
 
 ## The `pou` command
 
