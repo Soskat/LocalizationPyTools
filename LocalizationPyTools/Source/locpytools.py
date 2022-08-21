@@ -1,7 +1,7 @@
 # author: Katarzyna 'K8' Sosnowska
 # e-mail: sosnowska.kk@gmail.com
 # 
-# date of last update: 2022-08-06
+# date of last update: 2022-08-21
 # 
 # # About: 
 # This program is an entry point for using tools dedicated to a particular pipeline used 
@@ -34,6 +34,7 @@ from configtools import LocToolsConfig
 from configtools import generate_new_config, generate_config_if_needed
 from xlsxanalyser import analyse_xlsx_translations
 from listmissingtexts import list_missing_texts
+from listchangedtexts import list_changed_native_texts
 from poupdater import po_updater
 
 # program commands and arguments:
@@ -43,6 +44,7 @@ QUIT_OPTION = "quit"
 MAKE_CONFIG = "mkconfig"
 XLSXAN_TOOL = "xlsxan"
 LMT_TOOL = "lmt"
+LCT_TOOL = "lct"
 POU_TOOL = "pou"
 
 # program messages:
@@ -63,12 +65,17 @@ mkconfig    Generates a config file for other tools.
 
 xlsxan      Reads all XLSX files found in input directory and generates
             a dictionary with all translations for each found native text.
-            All input arguments are read from config file (`xlsxan` prefix).
+            All input arguments are read from a config file (`xlsxan` prefix).
 
 lmt         Searches texts with missing translations in input CSV files.
-            All missing translations are written into generated XLSX file.
+            All missing translations are written into a generated XLSX file.
             Each text ID is combined from file name and real text ID.
             All input arguments are read from config file (`lmt` prefix).
+
+lct         Searches texts with outdated translations in input PO file
+            for native culture.
+            All found texts are written into a generated XLSX file.
+            All input arguments are read from a config file (`lct` prefix).
 
 pou         Updates all PO files found in input directory subdirectories 
             with translations loaded from selected XLSX files.
@@ -90,6 +97,13 @@ def run_lmt_program():
     xlsxan_settings = config_data.get_xlsxan_settings()
     ltm_settings = config_data.get_lmt_settings()
     list_missing_texts(ltm_settings[0], xlsxan_settings[0], ltm_settings[1], ltm_settings[2])
+    pass
+
+def run_lct_program():
+    config_data = LocToolsConfig()
+    config_data.load_config_data()
+    lct_settings = config_data.get_lct_settings()
+    list_changed_native_texts(lct_settings[0], lct_settings[1])
     pass
 
 def run_pou_program():
@@ -126,6 +140,9 @@ if __name__== "__main__":
         # selectedTool is 'lmt':
         elif selectedTool == LMT_TOOL:
             run_lmt_program()
+        # selectedTool is 'lmt':
+        elif selectedTool == LCT_TOOL:
+            run_lct_program()
         # selectedTool is 'pou':
         elif selectedTool == POU_TOOL:
             run_pou_program()

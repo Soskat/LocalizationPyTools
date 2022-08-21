@@ -1,7 +1,7 @@
 # author: Katarzyna 'K8' Sosnowska
 # e-mail: sosnowska.kk@gmail.com
 # 
-# date of last update: 2022-08-05
+# date of last update: 2022-08-21
 # 
 # # About: 
 # This file contains helper class for managing reading and writing 
@@ -18,6 +18,8 @@ XLSXAN_MAX_COLUMNS = "xlsxan_max_columns"
 LMT_SOURCE_CSV_DIR = "lmt_source_csv_dir"
 LMT_XLSX_OUTPUT_DIR = "lmt_xlsx_output_dir"
 LMT_SEPARATOR = "lmt_separator"
+LCT_NATIVE_CULTURE_PO_FILE = "lct_native_culture_po_file"
+LCT_XLSX_OUTPUT_DIR = "lct_xlsx_output_dir"
 POU_PO_SOURCE_DIR = "pou_po_source_dir"
 POU_ID_SEPARATOR = "pou_id_separator"
 
@@ -36,6 +38,9 @@ class LocToolsConfig:
     lmt_source_csv_dir = STR_NONE
     lmt_xlsx_output_dir = STR_NONE
     lmt_separator = STR_NONE
+    # lct (list-changed-texts) tool settings:
+    lct_native_culture_po_file = STR_NONE
+    lct_xlsx_output_dir = STR_NONE
     # pou (po-updater) settings:
     pou_po_source_dir = STR_NONE
     pou_id_separator = DEFAULT_ID_PREFIX
@@ -61,6 +66,12 @@ class LocToolsConfig:
             config_file.write("{0}=none\n".format(LMT_XLSX_OUTPUT_DIR))
             config_file.write("# {0} - a single character or a phrase used for separating cells with data in CSV files (eg. a comma ',').\n".format(LMT_SEPARATOR))
             config_file.write("{0}=,\n".format(LMT_SEPARATOR))
+            # lcmt (list-changed-texst) variables:
+            config_file.write("\n## LCT (list-changed-texts) tool settings:\n")
+            config_file.write("# {0} - a path to a PO file with texts of native culture.\n".format(LCT_NATIVE_CULTURE_PO_FILE))
+            config_file.write("{0}=none\n".format(LCT_NATIVE_CULTURE_PO_FILE))
+            config_file.write("# {0} - a path to a directory, where the output XLSX file with list of changes source texts will be generated.\n".format(LCT_XLSX_OUTPUT_DIR))
+            config_file.write("{0}=none\n".format(LCT_XLSX_OUTPUT_DIR))
             # generate pou (po-updater) variables:
             config_file.write("\n## POU (po-updater) tool settings:\n")
             config_file.write("# {0} - a path to a directory with PO files, that whill be updated during POU tool job.\n".format(POU_PO_SOURCE_DIR))
@@ -86,13 +97,18 @@ class LocToolsConfig:
                     self.xlsxan_translations_dir = words[1].rstrip('\r\n')
                 elif words[0] == XLSXAN_MAX_COLUMNS:
                     self.xlsxan_max_columns = int(words[1].rstrip('\r\n'))
-                    # parsing list-missing-texts variables:
+                # parsing list-missing-texts variables:
                 elif words[0] == LMT_SOURCE_CSV_DIR:
                     self.lmt_source_csv_dir = words[1].rstrip('\r\n')
                 elif words[0] == LMT_XLSX_OUTPUT_DIR:
                     self.lmt_xlsx_output_dir = words[1].rstrip('\r\n')
                 elif words[0] == LMT_SEPARATOR:
                     self.lmt_separator = words[1].rstrip('\r\n')
+                # parsing list-changed-texts variables:
+                elif words[0] == LCT_NATIVE_CULTURE_PO_FILE:
+                    self.lct_native_culture_po_file = words[1].rstrip('\r\n')
+                elif words[0] == LCT_XLSX_OUTPUT_DIR:
+                    self.lct_xlsx_output_dir = words[1].rstrip('\r\n')
                 # parsing po_updater variables:
                 elif words[0] == POU_PO_SOURCE_DIR:
                     self.pou_po_source_dir = words[1].rstrip('\r\n')
@@ -113,6 +129,13 @@ class LocToolsConfig:
     '''
     def get_lmt_settings(self):
         return self.lmt_source_csv_dir, self.lmt_xlsx_output_dir, self.lmt_separator
+    
+    '''
+    This methods returns a tuple with all settings needed for 'lct' tool.
+    returns: (lct_native_culture_po_file, lmt_source_csv_dir)
+    '''
+    def get_lct_settings(self):
+        return self.lct_native_culture_po_file, self.lct_xlsx_output_dir
     
     '''
     This methods returns a tuple with all settings needed for 'pou' tool.
