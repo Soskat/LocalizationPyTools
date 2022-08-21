@@ -92,6 +92,41 @@ This simple program analyses data from the input PO file with native culture. It
 1. Run `lct` command in __locpytools__ program.
 1. New `ChangedTexts_XYZ.xlsx` file should be generated inside the path provided for `lct_xlsx_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
 
+### IMPORTANT NOTE ABOUT `lmt` TOOL
+
+The lmt tool demands CSV files to be formatted with serveral rules, which are the following:
+- in each row the cells are separated with `,` character
+- each cell must be encapsulated within quotation characters `"`
+- each text entry is contained in only one line. If you do need to create multi-line text, use `\r\n` formatting tag to create new line entry inside the source text
+- do not leave empty rows inside CSV file, as Unreal's Localization system might be not able to gather texts from such file
+
+How __BAD__ formatting looks like:
+```
+Key,SourceString,Comments
+,,,
+animal_cat,cat,A cat
+,,,
+animal_dog,dog,A dog
+,,,
+animal_cat_multiline,"This
+is
+THE CAT",A multi-line cat"
+,,,
+,,,
+,,,
+```
+
+And now how __GOOD__ formatting looks like:
+```
+"Key","SourceString","Comments"
+
+"animal_cat","cat","A cat"
+
+"animal_dog","dog","A dog"
+
+"animal_cat_multiline","This\r\nis\r\nTHE CAT",The multi-line cat"
+```
+
 ## The `pou` command
 
 It runs the `poupdater` tool, that updates existing PO files with provided texts translations found in XLSX files.
