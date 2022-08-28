@@ -74,7 +74,7 @@ def list_missing_texts(csv_source_dir, xlsx_translations_dir, xlsx_output_dir, s
                 words = line.split(separator)
                 if len(words) < 2:
                     continue
-                elif words[0] in ["Key", "\"Key\""] or len(words[0]) < 1:
+                elif words[0].lower() == "\"key" or len(words[0]) < 1:
                     continue
                 text_id = words[0][1:].rstrip('\"\n')
                 if text_id not in translations_dict:

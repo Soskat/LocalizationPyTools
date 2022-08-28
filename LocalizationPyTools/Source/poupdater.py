@@ -57,12 +57,14 @@ def update_po_file(input_file_path, culture_code, translations_dict, text_id_sep
                     pass
                 updated_lines.append(line)
             elif line.startswith(MSGSTR):
+                # translation was found in some XLSX file, use it:
                 if text_id in translations_dict and culture_code in translations_dict[text_id]:
                     text_source = translations_dict[text_id][culture_code]
                     updated_lines.append("{0}\"{1}\"\n".format(MSGSTR, text_source))
                     debug_translations_count += 1
+                # translation was not found in any XLSX file, reset MSGSTR:
                 else:
-                    updated_lines.append(line)
+                    updated_lines.append("{0}\"\"\n".format(MSGSTR))
                     debug_errors_count += 1
             else:
                 updated_lines.append(line)
