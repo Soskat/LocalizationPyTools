@@ -20,6 +20,8 @@ LMT_XLSX_OUTPUT_DIR = "lmt_xlsx_output_dir"
 LMT_SEPARATOR = "lmt_separator"
 LCT_NATIVE_CULTURE_PO_FILE = "lct_native_culture_po_file"
 LCT_XLSX_OUTPUT_DIR = "lct_xlsx_output_dir"
+XLSXREG_XLSX_INPUT_DIR = "xlsxreg_xlsx_input_dir"
+XLSXREG_OUTPUT_DIR = "xlsxreg_output_dir"
 POU_PO_SOURCE_DIR = "pou_po_source_dir"
 POU_ID_SEPARATOR = "pou_id_separator"
 
@@ -41,6 +43,9 @@ class LocToolsConfig:
     # lct (list-changed-texts) tool settings:
     lct_native_culture_po_file = STR_NONE
     lct_xlsx_output_dir = STR_NONE
+    # xlsxreg (xlsx-registry) tool settings:
+    xlsxreg_xlsx_input_dir = STR_NONE
+    xlsxreg_output_dir = STR_NONE
     # pou (po-updater) settings:
     pou_po_source_dir = STR_NONE
     pou_id_separator = DEFAULT_ID_PREFIX
@@ -72,6 +77,12 @@ class LocToolsConfig:
             config_file.write("{0}=none\n".format(LCT_NATIVE_CULTURE_PO_FILE))
             config_file.write("# {0} - a path to a directory, where the output XLSX file with list of changes source texts will be generated.\n".format(LCT_XLSX_OUTPUT_DIR))
             config_file.write("{0}=none\n".format(LCT_XLSX_OUTPUT_DIR))
+            # xlsxreg (xlsx-registry) variables:
+            config_file.write("\n## XLSXREG (xlsx-registry) tool settings:\n")
+            config_file.write("# {0} - a path to a directory with XLSX translation files to be merged.\n".format(XLSXREG_XLSX_INPUT_DIR))
+            config_file.write("{0}=none\n".format(XLSXREG_XLSX_INPUT_DIR))
+            config_file.write("# {0} - a path to a directory, where the output XLSX file with texts registry will be generated.\n".format(XLSXREG_OUTPUT_DIR))
+            config_file.write("{0}=none\n".format(XLSXREG_OUTPUT_DIR))
             # generate pou (po-updater) variables:
             config_file.write("\n## POU (po-updater) tool settings:\n")
             config_file.write("# {0} - a path to a directory with PO files, that whill be updated during POU tool job.\n".format(POU_PO_SOURCE_DIR))
@@ -109,6 +120,11 @@ class LocToolsConfig:
                     self.lct_native_culture_po_file = words[1].rstrip('\r\n')
                 elif words[0] == LCT_XLSX_OUTPUT_DIR:
                     self.lct_xlsx_output_dir = words[1].rstrip('\r\n')
+                # parsing xlsx-registry variables:
+                elif words[0] == XLSXREG_XLSX_INPUT_DIR:
+                    self.xlsxreg_xlsx_input_dir = words[1].rstrip('\r\n')
+                elif words[0] == XLSXREG_OUTPUT_DIR:
+                    self.xlsxreg_output_dir = words[1].rstrip('\r\n')
                 # parsing po_updater variables:
                 elif words[0] == POU_PO_SOURCE_DIR:
                     self.pou_po_source_dir = words[1].rstrip('\r\n')
@@ -136,6 +152,13 @@ class LocToolsConfig:
     '''
     def get_lct_settings(self):
         return self.lct_native_culture_po_file, self.lct_xlsx_output_dir
+    
+    '''
+    This methods returns a tuple with all settings needed for 'xlsxreg' tool.
+    returns: (xlsxreg_xlsx_input_dir, xlsxreg_output_dir)
+    '''
+    def get_xlsxreg_settings(self):
+        return self.xlsxreg_xlsx_input_dir, self.xlsxreg_output_dir
     
     '''
     This methods returns a tuple with all settings needed for 'pou' tool.
