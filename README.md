@@ -127,6 +127,24 @@ This simple program analyses data from the input PO file with native culture. It
 1. Run `lct` command in __locpytools__ program.
 1. New `ChangedTexts_XYZ.xlsx` file should be generated inside the path provided for `lct_xlsx_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
 
+## The `xlsxreg` command
+
+It runs the `xlsxregistry` tool, which merges all texts entries from existing XLSX files with texts translations. The main purpose for this program is to speed up the process of looking for a particular text translations in order to update or remove them.
+
+The generated XLSX registry provides following information for each localized text:
+- `ID` - the text unique key
+- `Source Text` - the native text
+- `Context` - additional information for translators
+- `Text Source File` - name of the file where the text is defined
+- `TTranslations Batch` - name of the file where we can find all translations for this text
+
+### Usage
+
+1. Run __locpytools__ program. Make sure that the `.config` file exists - if not, you can generate one using the `mkconfig` command.
+1. Make sure the `.config` file has proper data for arguments with `xlsxreg` prefix.
+1. Run `xlsxreg` command in __locpytools__ program.
+1. New `TranslationsRegistry_XYZ.xlsx` file should be generated inside the path provided for `xlsxreg_output_dir` argument. The XYZ in the file name will be replaced with a date and time of the file creation.
+
 ## The `pou` command
 
 It runs the `poupdater` tool, that updates existing PO files with provided texts translations found in XLSX files.
